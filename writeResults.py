@@ -13,7 +13,7 @@ def writeResults( initial, new, solver, replanner):
     args = args.instance.strip("instances")
     new_args = args.split('/')
     file = open("experiment2Results/"+solver+"/"+new_args[0]+"/"+new_args[1]+"/"+new_args[2]+"/"+new_args[3]+"/"+replanner.lower()+"Result.txt", "a")
-    file.write(new_args[3] + " initial: " + str(initial) + "; new: "+ str(new))
+    file.write(new_args[4] +" initial: " + str(initial) + "; new: "+ str(new)+ "\n")
     file.close()
 
 def writeResultsForExperiment1(cost,planner ):
