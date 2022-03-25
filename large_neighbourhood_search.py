@@ -81,8 +81,8 @@ class Large_neighbourhood_search:
             for agent in paths:
                 assigned_targets[largest_makespan_team].append((agent[0],agent[-1]))
         largest_makespan = 0
-        for team in result.keys():
-            team_makespan = get_makespan(result[team])
+        for team in new_result.keys():
+            team_makespan = get_makespan(new_result[team])
             if team_makespan>largest_makespan:
                 largest_makespan=team_makespan
                 largest_makespan_team= team
