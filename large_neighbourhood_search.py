@@ -9,7 +9,7 @@ class Large_neighbourhood_search:
     def generate_constraints(self,paths, assigned_targets, team, constraints):
         for path in paths:
             for index in range(len(path)):
-                for j in range(len(assigned_targets[team])):
+                for j in range(len(assigned_targets)):
                     if (index<len(path)-1):
                         constraints.append({
                             'agent': j,
