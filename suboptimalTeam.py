@@ -215,7 +215,7 @@ class suboptimalTeam:
                 elif LNS=="team":
                     initial_cost = node['cost']
                     start = time.perf_counter()
-                    while float(time.perf_counter()-start<float(200)):
+                    while float(time.perf_counter()-start<float(400)):
                         LNS = Large_neighbourhood_search(self.my_map)
                         node['paths'], self.assigned_targets = LNS.team_heuristic(node['paths'],self.assigned_targets, replanner)
                         new_cost = self.get_cost(node['paths'])

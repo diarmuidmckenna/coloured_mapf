@@ -406,7 +406,7 @@ class TeamPrioritizedPlanningSolver(object):
                 initial_cost = get_makespan(result)
                 new_result, target_assignment = self.return_to_team_MAPF(result)
                 start = time.perf_counter()
-                while float(time.perf_counter()-start<float(200)):
+                while float(time.perf_counter()-start<float(400)):
                     LNS = Large_neighbourhood_search(self.my_map)
                     new_result, target_assignment = LNS.team_heuristic(new_result,target_assignment, replanner)
                     new_cost = self.get_team_cost(new_result)
