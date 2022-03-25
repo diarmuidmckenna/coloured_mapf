@@ -1,0 +1,5 @@
+* cost: 40
+* cost: 31
+* cost: 44
+* cost: 45
+* cost: 46

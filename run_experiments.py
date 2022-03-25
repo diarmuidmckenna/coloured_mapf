@@ -120,10 +120,12 @@ if __name__ == '__main__':
         print_mapf_instance(my_map, starts, goals)
         if args.solver=="suboptimalTeam":
             solver = suboptimalTeam(my_map,  starts, goals)
-            paths, assigned_targets = solver.find_solution(args.replanner, LNS="none", target_assignment="hungarian")
+            paths, assigned_targets = solver.find_solution(args.replanner, LNS="team", target_assignment="hungarian")
+            if paths == None:
+                print("NO PATHS")
         elif args.solver=="Prioritized":
             solver = TeamPrioritizedPlanningSolver(my_map, starts, goals, team=True)
-            paths, assigned_targets = solver.find_solution(args.replanner,LNS="None")
+            paths, assigned_targets = solver.find_solution(args.replanner,LNS="team")
         #print(paths)
 
 

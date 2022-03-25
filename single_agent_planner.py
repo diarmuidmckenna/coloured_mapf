@@ -65,7 +65,7 @@ def build_constraint_table(agent, constraints):
     # issue needs to be resolved for 
     constraint_table = []
     goal_locs = {}
-    for i in range(0,2000):
+    for i in range(0,4000):
         timeStepConstraints = []
         for con in constraints:
             if con['timestep']==i and con['agent']==agent:

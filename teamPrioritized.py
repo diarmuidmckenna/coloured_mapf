@@ -2,7 +2,7 @@ import time
 from single_agent_planner import compute_heuristics, a_star, get_sum_of_cost, get_makespan
 import random
 from large_neighbourhood_search import Large_neighbourhood_search
-from writeResults import writeResultsForExperiment1
+from writeResults import writeResultsForExperiment1, writeResults
 from assignment import Assignment
 class TeamPrioritizedPlanningSolver(object):
     """A planner that plans for each robot sequentially."""
@@ -403,14 +403,14 @@ class TeamPrioritizedPlanningSolver(object):
             if LNS=="classic":
                     self.classic_LNS(result)
             elif LNS=="team":
-                
+                initial_cost = self.get_makespan(result)
                 new_result, target_assignment = self.return_to_team_MAPF(result)
                 start = time.perf_counter()
-                while float(time.perf_counter()-start<float(100)):
+                while float(time.perf_counter()-start<float(200)):
                     LNS = Large_neighbourhood_search(self.my_map)
                     new_result, target_assignment = LNS.team_heuristic(new_result,target_assignment, replanner)
                     new_cost = self.get_team_cost(new_result)
-                #writeResults(initial_cost, new_cost, "hungarian", replanner)
+                writeResults(initial_cost, new_cost, "prioritized", replanner)
             else: 
                 initial = get_makespan(result)
                 new_result, target_assignment = self.return_to_team_MAPF(result)

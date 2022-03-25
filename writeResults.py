@@ -1,5 +1,5 @@
 import argparse
-def writeResults( initial, new, target_assignment, replanner):
+def writeResults( initial, new, solver, replanner):
     parser = argparse.ArgumentParser(description='Runs various MAPF algorithms')
     parser.add_argument('--instance', type=str, default=None,
                         help='The name of the instance file(s)')
@@ -12,7 +12,7 @@ def writeResults( initial, new, target_assignment, replanner):
     args = parser.parse_args()
     args = args.instance.strip("instances")
     new_args = args.split('/')
-    file = open("results"+new_args[0]+"/"+new_args[1]+"/"+"/"+replanner.lower()+"/"+new_args[2]+"/result.txt", "a")
+    file = open("experiment2Results/"+solver+"/"+new_args[0]+"/"+new_args[1]+"/"+"/"+replanner.lower()+"/"+new_args[2]+"/result.txt", "a")
     file.write(new_args[3] + " initial: " + str(initial) + "; new: "+ str(new))
     file.close()
 

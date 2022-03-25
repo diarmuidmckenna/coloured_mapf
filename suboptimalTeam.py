@@ -173,6 +173,7 @@ class suboptimalTeam:
 
 
     def find_solution(self, replanner, LNS, target_assignment):
+        start_time = time.perf_counter()
         for key in self.starts.keys():
             team_starts, team_goals = self.target_assignment(self.starts[key], self.goals[key], method=target_assignment)
             self.assigned_targets[key] = []
@@ -204,7 +205,7 @@ class suboptimalTeam:
         root['cost'] += self.get_cost(root['paths'])
         root['collisions'] = self.detect_collisions(root['paths'])
         self.push_node(root)
-        while len(self.open_list)>0:
+        while len(self.open_list)>0 and time.perf_counter()-start_time<1500:
             node = self.pop_node()
             node['collisions'] = self.detect_collisions(node['paths'])
             if len(node['collisions']) == 0:
@@ -214,11 +215,11 @@ class suboptimalTeam:
                 elif LNS=="team":
                     initial_cost = node['cost']
                     start = time.perf_counter()
-                    while float(time.perf_counter()-start<float(100)):
+                    while float(time.perf_counter()-start<float(200)):
                         LNS = Large_neighbourhood_search(self.my_map)
                         node['paths'], self.assigned_targets = LNS.team_heuristic(node['paths'],self.assigned_targets, replanner)
                         new_cost = self.get_cost(node['paths'])
-                    writeResults(initial_cost, new_cost, target_assignment, replanner)
+                    writeResults(initial_cost, new_cost, "suboptimal", replanner)
                 else: 
                     writeResultsForExperiment1(node['cost'], "suboptimalCBS")
                 return node['paths'], self.assigned_targets
@@ -240,4 +241,6 @@ class suboptimalTeam:
                 child_node['paths'][team] = paths
                 child_node['collisions'] = self.detect_collisions(child_node['paths'])
                 child_node['cost']=self.get_cost(child_node['paths'])
-                self.push_node(child_node)                  
+                self.push_node(child_node)  
+        writeResultsForExperiment1("NO SOLUTION", "suboptimalCBS")       
+        return None, None                

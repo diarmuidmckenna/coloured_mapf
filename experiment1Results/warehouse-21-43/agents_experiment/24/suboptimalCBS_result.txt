@@ -1,1 +1,5 @@
 * cost: 33
+* cost: NO SOLUTION
+* cost: NO SOLUTION
+* cost: 31
+* cost: 35
