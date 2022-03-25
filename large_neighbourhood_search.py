@@ -66,7 +66,7 @@ class Large_neighbourhood_search:
             else:
                 constraints = self.generate_constraints(result[team],assigned_targets[team], largest_makespan_team, constraints)
         # replan the paths for that team
-        if replanner=="Prioritized":
+        if replanner=="prioritized":
             solver = PrioritizedPlanningSolver(self.my_map, new_starts, new_goals)
             paths = solver.find_solution(extra_constraints=constraints)
         else:

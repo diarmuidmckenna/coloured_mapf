@@ -403,7 +403,7 @@ class TeamPrioritizedPlanningSolver(object):
             if LNS=="classic":
                     self.classic_LNS(result)
             elif LNS=="team":
-                initial_cost = self.get_makespan(result)
+                initial_cost = get_makespan(result)
                 new_result, target_assignment = self.return_to_team_MAPF(result)
                 start = time.perf_counter()
                 while float(time.perf_counter()-start<float(200)):
