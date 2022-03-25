@@ -404,13 +404,18 @@ class TeamPrioritizedPlanningSolver(object):
                     self.classic_LNS(result)
             elif LNS=="team":
                 initial_cost = get_makespan(result)
-                new_result, target_assignment = self.return_to_team_MAPF(result)
+                result, target_assignment = self.return_to_team_MAPF(result)
+                done = False
                 start = time.perf_counter()
-                while float(time.perf_counter()-start<float(900)):
+                while done==False:
                     LNS = Large_neighbourhood_search(self.my_map)
-                    new_result, target_assignment = LNS.team_heuristic(new_result,target_assignment, replanner)
-                    new_cost = self.get_team_cost(new_result)
-                writeResults(initial_cost, new_cost, "prioritized", replanner)
+                    new_result, new_target_assignment = LNS.team_heuristic(result,target_assignment, replanner)
+                    if float(time.perf_counter()-start<float(900)):
+                        new_cost = self.get_team_cost(new_result)
+                        target_assignment=new_target_assignment
+                    else:
+                        writeResults(initial_cost, new_cost, "prioritized", replanner)
+                        done=True
             else: 
                 initial = get_makespan(result)
                 new_result, target_assignment = self.return_to_team_MAPF(result)
