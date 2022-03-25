@@ -42,7 +42,7 @@ class TeamPrioritizedPlanningSolver(object):
         makespan = 0
         for team in paths.keys():
             for agent in paths[team]:
-                length = len(agent)-1
+                length = len(agent)
                 if length>makespan:
                     makespan=length
         return makespan
