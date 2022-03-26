@@ -129,9 +129,9 @@ if __name__ == '__main__':
         #print(paths)
 
 
-        print("***Test paths on a simulation***")          
-        a = Animation(my_map, assigned_targets, paths)
+        #print("***Test paths on a simulation***")          
+        #a = Animation(my_map, assigned_targets, paths)
         # animation.save("output.mp4", 1.0)
-        a.show()
+        #a.show()
 
         # last update getting collisions, next task is to pass in constraints into prioritized solver

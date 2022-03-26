@@ -114,7 +114,7 @@ class Large_neighbourhood_search:
             if team==largest_makespan_team:
                 for agent in range(len(result[largest_makespan_team])):
                     if agent not in neighbourhood:
-                        self.generate_constraints_for_same_team(neighbourhood, result[largest_makespan_team][agent], constraints)
+                        constraints = self.generate_constraints_for_same_team(neighbourhood, result[largest_makespan_team][agent], constraints)
             else:
                 constraints = self.generate_constraints(result[team],assigned_targets[team], largest_makespan_team, constraints)
         # replan the paths for that team
