@@ -63,7 +63,7 @@ class Large_neighbourhood_search:
                             })
         return constraints
 
-    def team_heuristic(self, result, assigned_targets, replanner):
+    def team_heuristic(self, result, assigned_targets, replanner, n=4):
         #####################################################################
         largest_makespan = 0
         new_result = result.copy()
@@ -76,7 +76,23 @@ class Large_neighbourhood_search:
         print(largest_makespan_team)
         print("Initial Makespan " + str(largest_makespan))
         # find index(agent) w/ longest path in largest makespan team
+        longest_path = len(result[largest_makespan_team][0])
+        longest_path_index = 0
+        for agent in range(len(result[largest_makespan_team])):
+            if len(result[largest_makespan_team][agent])>=longest_path:
+                longest_path=len(result[largest_makespan_team][agent])
+                longest_path_index= agent
         # generate a random neighbourhood of size n, longest_path_index, may not be in here but if not we will remove one and add it
+        if len(result[largest_makespan_team])>n:
+            neighbourhood = random.sample(range(0,len(result[largest_makespan_team])-1), n)
+        else:
+            for x in range(len(result[largest_makespan_team])):
+                neighbourhood.append(x)
+                random.shuffle(neighbourhood)
+        if longest_path_index not in neighbourhood:
+            neighbourhood.pop()
+            neighbourhood.append(longest_path_index)
+
         # shuffle target assignments for that team
         starts = []
         goals = []
@@ -84,8 +100,9 @@ class Large_neighbourhood_search:
         #    starts.append(start)
         #    goals.append(goal)
         for agent in range(len(assigned_targets[largest_makespan_team])):
-            starts.append(assigned_targets[largest_makespan_team][agent][0])
-            goals.append(assigned_targets[largest_makespan_team][agent][1])
+            if agent in neighbourhood:
+                starts.append(assigned_targets[largest_makespan_team][agent][0])
+                goals.append(assigned_targets[largest_makespan_team][agent][1])
         random.shuffle(starts)
         random.shuffle(goals)
         new_starts, new_goals = greedy_target_assignment(starts, goals)
@@ -94,7 +111,9 @@ class Large_neighbourhood_search:
         constraints = []
         for team in result.keys():
             if team==largest_makespan_team:
-                pass
+                for agent in range(len(result[team])):
+                    if agent not in neighbourhood:
+                        constraints = self.generate_constraints_for_same_team(neighbourhood, result[team][agent], constraints)
             else:
                 constraints = self.generate_constraints(result[team],assigned_targets[team], largest_makespan_team, constraints)
         # replan the paths for that team
