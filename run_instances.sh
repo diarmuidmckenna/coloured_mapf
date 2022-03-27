@@ -1,7 +1,38 @@
 #!/bin/sh
-for instance in '"instances/random-32-32-20/agents_experiment/16/*"' '"instances/random-32-32-20/agents_experiment/24/*"' '"instances/random-32-32-20/agents_experiment/32/*"' '"instances/random-32-32-20/agents_experiment/40/*"'; do
+for instance in "instances/random-32-32-20/agents_experiment/16/test_1.txt"
+"instances/random-32-32-20/agents_experiment/16/test_2.txt"
+"instances/random-32-32-20/agents_experiment/16/test_3.txt"
+"instances/random-32-32-20/agents_experiment/16/test_4.txt"
+"instances/random-32-32-20/agents_experiment/16/test_5.txt"
+"instances/random-32-32-20/agents_experiment/24/test_1.txt"
+"instances/random-32-32-20/agents_experiment/24/test_2.txt"
+"instances/random-32-32-20/agents_experiment/24/test_3.txt"
+"instances/random-32-32-20/agents_experiment/24/test_4.txt"
+"instances/random-32-32-20/agents_experiment/24/test_5.txt"
+"instances/random-32-32-20/agents_experiment/32/test_1.txt"
+"instances/random-32-32-20/agents_experiment/32/test_2.txt"
+"instances/random-32-32-20/agents_experiment/32/test_3.txt"
+"instances/random-32-32-20/agents_experiment/32/test_4.txt"
+"instances/random-32-32-20/agents_experiment/32/test_5.txt"
+"instances/random-32-32-20/agents_experiment/40/test_1.txt"
+"instances/random-32-32-20/agents_experiment/40/test_2.txt"
+"instances/random-32-32-20/agents_experiment/40/test_3.txt"
+"instances/random-32-32-20/agents_experiment/40/test_4.txt"
+"instances/random-32-32-20/agents_experiment/40/test_5.txt"
+"instances/random-32-32-20/teams_experiment/2/test_1.txt"
+"instances/random-32-32-20/teams_experiment/2/test_2.txt"
+"instances/random-32-32-20/teams_experiment/2/test_3.txt"
+"instances/random-32-32-20/teams_experiment/2/test_4.txt"
+"instances/random-32-32-20/teams_experiment/2/test_5.txt"
+"instances/random-32-32-20/teams_experiment/4/test_1.txt"
+"instances/random-32-32-20/teams_experiment/4/test_2.txt"
+"instances/random-32-32-20/teams_experiment/4/test_3.txt"
+"instances/random-32-32-20/teams_experiment/4/test_4.txt"
+"instances/random-32-32-20/teams_experiment/4/test_5.txt"
+"instances/random-32-32-20/teams_experiment/8/test_1.txt"
+"instances/random-32-32-20/teams_experiment/8/test_2.txt"
+"instances/random-32-32-20/teams_experiment/8/test_3.txt"
+"instances/random-32-32-20/teams_experiment/8/test_4.txt"
+"instances/random-32-32-20/teams_experiment/8/test_5.txt"; do
 python3 run_experiments.py --instance $instance --solver Prioritized --replanner prioritized
 done;
-git add .
-git commit -m "bash script updating results"
-git push
