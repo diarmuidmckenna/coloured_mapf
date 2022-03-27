@@ -106,7 +106,7 @@ class Large_neighbourhood_search:
             paths = solver.find_solution(extra_constraints=constraints)
         # if the new makespan of the team is large
         new_makespan = get_makespan(paths)
-        if new_makespan<largest_makespan:
+        if new_makespan<=largest_makespan:
             new_result[largest_makespan_team] = paths
             # change target assignments dictionary to reflect new changes
             assigned_targets[largest_makespan_team]=[]
