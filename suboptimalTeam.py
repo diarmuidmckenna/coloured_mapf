@@ -1,16 +1,12 @@
-from single_agent_planner import compute_heuristics, a_star, get_sum_of_cost, get_makespan, get_location
-import math
+from single_agent_planner import get_makespan
 import time as timer
 import heapq
-import random
 import numpy as np
-from scipy.optimize import linear_sum_assignment
 from prioritized import PrioritizedPlanningSolver
-import argparse
 import time
 from writeResults import writeResults, writeResultsForExperiment1
 from cbs import CBSSolver
-from assignment import Assignment
+from assignment import hungarian, greedy_target_assignment
 from large_neighbourhood_search import Large_neighbourhood_search
 
 
@@ -111,13 +107,13 @@ class suboptimalTeam:
         pass
 
 
-    def target_assignment(self, starts, goals, method="greedy"):
-        target_assigner = Assignment(starts, goals)
+    def target_assignment(self, starts, goals, method="hungarian"):
+        #target_assigner = Assignment(starts, goals)
         assigned_targets = []
         if method=="greedy":
-            assigned_targets=target_assigner.greedy_target_assignment()
+            assigned_targets=greedy_target_assignment(starts, goals)
         else:
-            assigned_targets=target_assigner.hungarian()
+            assigned_targets=hungarian(starts, goals)
         return assigned_targets
 
     
@@ -215,9 +211,9 @@ class suboptimalTeam:
                 elif LNS=="team":
                     initial_cost = node['cost']
                     start = time.perf_counter()
+                    LNS = Large_neighbourhood_search(self.my_map)
                     done=False
                     while done==False:
-                        LNS = Large_neighbourhood_search(self.my_map)
                         node['paths'], assigned_targets = LNS.team_heuristic(node['paths'],self.assigned_targets, replanner)
                         if float(time.perf_counter()-start<float(900)):
                             new_cost = self.get_cost(node['paths'])

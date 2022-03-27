@@ -2,7 +2,7 @@ from single_agent_planner import get_makespan
 import random
 from cbs import CBSSolver
 from prioritized import PrioritizedPlanningSolver
-from assignment import Assignment
+from assignment import greedy_target_assignment
 class Large_neighbourhood_search:
     def __init__(self, my_map):
         self.my_map = my_map
@@ -104,8 +104,7 @@ class Large_neighbourhood_search:
                 goals.append(assigned_targets[largest_makespan_team][agent][1])
         random.shuffle(starts)
         random.shuffle(goals)
-        target_assigner = Assignment(starts, goals)
-        new_starts, new_goals = target_assigner.greedy_target_assignment()
+        new_starts, new_goals = greedy_target_assignment(starts, goals)
         # for every other team, for every agent in that team, generate constraints so that neighbourhood team treats other teams as moving obsacles
         # shuffle target assignments
         print(neighbourhood)

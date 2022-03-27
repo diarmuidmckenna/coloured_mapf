@@ -1,0 +1,2 @@
+* initial: 16; new: 15
+test_2.tx initial: 17; new: 17
