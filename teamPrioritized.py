@@ -414,7 +414,7 @@ class TeamPrioritizedPlanningSolver(object):
                         new_cost = self.get_team_cost(result)
                         target_assignment=new_target_assignment
                     else:
-                        writeResultsForExperiment1(initial, "Prioritized")
+                        writeResultsForExperiment1(initial_cost, "Prioritized")
                         writeResults(initial_cost, new_cost, "prioritized", replanner)
                         done=True
             else: 

@@ -219,7 +219,7 @@ class suboptimalTeam:
                             new_cost = self.get_cost(node['paths'])
                             self.assigned_targets=assigned_targets
                         else:
-                            writeResultsForExperiment1(node['cost'], "suboptimalCBS")
+                            writeResultsForExperiment1(initial_cost, "suboptimalCBS")
                             writeResults(initial_cost, new_cost, "suboptimal", replanner)
                             done=True
                 else: 
