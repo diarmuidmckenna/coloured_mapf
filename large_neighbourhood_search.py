@@ -86,6 +86,7 @@ class Large_neighbourhood_search:
         if len(result[largest_makespan_team])>n:
             neighbourhood = random.sample(range(0,len(result[largest_makespan_team])-1), n)
         else:
+            neighbourhood=[]
             for x in range(len(result[largest_makespan_team])):
                 neighbourhood.append(x)
                 random.shuffle(neighbourhood)
