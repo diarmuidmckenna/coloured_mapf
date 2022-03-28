@@ -215,10 +215,11 @@ class suboptimalTeam:
                     done=False
                     while done==False:
                         node['paths'], assigned_targets = LNS.team_heuristic(node['paths'],self.assigned_targets, replanner)
-                        if float(time.perf_counter()-start<float(900)):
+                        if float(time.perf_counter()-start<float(300)):
                             new_cost = self.get_cost(node['paths'])
                             self.assigned_targets=assigned_targets
                         else:
+                            writeResultsForExperiment1(node['cost'], "suboptimalCBS")
                             writeResults(initial_cost, new_cost, "suboptimal", replanner)
                             done=True
                 else: 

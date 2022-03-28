@@ -1,0 +1,22 @@
+12 21
+TTTTTTTTTTTTTTTTTTTTT
+T...................T
+T....TTT.TTT.TTT....T
+T....TTT.TTT.TTT....T
+T...................T
+T....TTT.TTT.TTT....T
+T....TTT.TTT.TTT....T
+T...................T
+T....TTT.TTT.TTT....T
+T....TTT.TTT.TTT....T
+T...................T
+TTTTTTTTTTTTTTTTTTTTT
+4
+5 4 6 8 3 2
+9 4 4 11 9 12
+8 2 10 14 3 19
+6 17 10 1 4 15
+1 5 5 1 8 18
+3 1 9 2 1 6
+2 19 9 16 3 8
+4 19 5 17 7 6
