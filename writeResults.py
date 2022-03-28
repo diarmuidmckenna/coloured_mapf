@@ -5,8 +5,6 @@ def writeResults( initial, new, solver, replanner):
                         help='The name of the instance file(s)')
     parser.add_argument('--batch', action='store_true', default=False,
                         help='Use batch output instead of animation')
-    parser.add_argument('--replanner', type=str, default="Prioritised",
-                        help='Use batch output instead of animation')
     parser.add_argument('--solver', type=str, default="Prioritised",
                         help='Use batch output instead of animation')
     args = parser.parse_args()

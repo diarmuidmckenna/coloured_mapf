@@ -375,7 +375,7 @@ class TeamPrioritizedPlanningSolver(object):
 
 
 
-    def find_solution(self,replanner, LNS=False, extra_constraints=[]):
+    def find_solution(self,LNS=False, extra_constraints=[]):
         """ Finds paths for all agents from their start locations to their goal locations."""
         constraints=[]
         if len(extra_constraints)>0:
@@ -404,19 +404,21 @@ class TeamPrioritizedPlanningSolver(object):
             elif LNS=="team":
                 initial_cost = get_makespan(result)
                 new_cost = initial_cost
-                result, target_assignment = self.return_to_team_MAPF(result)
-                done = False
-                start = time.perf_counter()
-                LNS = Large_neighbourhood_search(self.my_map)
-                while done==False:
-                    result, new_target_assignment = LNS.team_heuristic(result,target_assignment, replanner)
-                    if float(time.perf_counter()-start<float(300)):
-                        new_cost = self.get_team_cost(result)
-                        target_assignment=new_target_assignment
-                    else:
-                        writeResultsForExperiment1(initial_cost, "Prioritized")
-                        writeResults(initial_cost, new_cost, "prioritized", replanner)
-                        done=True
+                initial_result, initial_target_assignment = self.return_to_team_MAPF(result)
+                for replanner in ["prioritized", "cbs"]:
+                    result, target_assignment = initial_result, initial_target_assignment
+                    done = False
+                    start = time.perf_counter()
+                    LNS = Large_neighbourhood_search(self.my_map)
+                    while done==False:
+                        result, new_target_assignment = LNS.team_heuristic(result,target_assignment, replanner)
+                        if float(time.perf_counter()-start<float(300)):
+                            new_cost = self.get_team_cost(result)
+                            target_assignment=new_target_assignment
+                        else:
+                            writeResultsForExperiment1(initial_cost, "Prioritized")
+                            writeResults(initial_cost, new_cost, "prioritized", replanner)
+                            done=True
             else: 
                 initial = get_makespan(result)
                 result, target_assignment = self.return_to_team_MAPF(result)

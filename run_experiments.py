@@ -104,8 +104,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Runs various MAPF algorithms')
     parser.add_argument('--instance', type=str, default=None,
                         help='The name of the instance file(s)')
-    parser.add_argument('--replanner', type=str, default=None,
-                        help='The solver to use (one of: {CBS,Prioritized}), defaults to ' + str(SOLVER))
     parser.add_argument('--solver', type=str, default=None,
                         help='The solver to use (one of: {suboptimalTeam,Prioritized}), defaults to ' + str(SOLVER))
     args, unknown = parser.parse_known_args()
@@ -120,12 +118,12 @@ if __name__ == '__main__':
         print_mapf_instance(my_map, starts, goals)
         if args.solver=="suboptimalTeam":
             solver = suboptimalTeam(my_map,  starts, goals)
-            paths, assigned_targets = solver.find_solution(args.replanner, LNS="team", target_assignment="hungarian")
+            paths, assigned_targets = solver.find_solution(LNS="team", target_assignment="hungarian")
             if paths == None:
                 print("NO PATHS")
         elif args.solver=="Prioritized":
             solver = TeamPrioritizedPlanningSolver(my_map, starts, goals, team=True)
-            paths, assigned_targets = solver.find_solution(args.replanner,LNS="team")
+            paths, assigned_targets = solver.find_solution(LNS="team")
         #print(paths)
 
 

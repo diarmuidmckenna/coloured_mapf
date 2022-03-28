@@ -168,7 +168,7 @@ class suboptimalTeam:
 
 
 
-    def find_solution(self, replanner, LNS, target_assignment):
+    def find_solution(self, LNS, target_assignment):
         start_time = time.perf_counter()
         for key in self.starts.keys():
             team_starts, team_goals = self.target_assignment(self.starts[key], self.goals[key], method=target_assignment)
@@ -201,7 +201,7 @@ class suboptimalTeam:
         root['cost'] += self.get_cost(root['paths'])
         root['collisions'] = self.detect_collisions(root['paths'])
         self.push_node(root)
-        while len(self.open_list)>0 and time.perf_counter()-start_time<1500:
+        while len(self.open_list)>0 and time.perf_counter()-start_time<180:
             node = self.pop_node()
             node['collisions'] = self.detect_collisions(node['paths'])
             if len(node['collisions']) == 0:
@@ -212,16 +212,19 @@ class suboptimalTeam:
                     initial_cost = node['cost']
                     start = time.perf_counter()
                     LNS = Large_neighbourhood_search(self.my_map)
-                    done=False
-                    while done==False:
-                        node['paths'], assigned_targets = LNS.team_heuristic(node['paths'],self.assigned_targets, replanner)
-                        if float(time.perf_counter()-start<float(300)):
-                            new_cost = self.get_cost(node['paths'])
-                            self.assigned_targets=assigned_targets
-                        else:
-                            writeResultsForExperiment1(initial_cost, "suboptimalCBS")
-                            writeResults(initial_cost, new_cost, "suboptimal", replanner)
-                            done=True
+                    initial_result, initial_target_assignment = node['paths'], self.assigned_targets
+                    for replanner in ["prioritized", "cbs"]:
+                        result, assigned_targets =  initial_result, initial_target_assignment 
+                        done=False
+                        while done==False:
+                            result, assigned_targets = LNS.team_heuristic(result, assigned_targets, replanner)
+                            if float(time.perf_counter()-start<float(300)):
+                                new_cost = self.get_cost(result)
+                                self.assigned_targets=assigned_targets
+                            else:
+                                writeResultsForExperiment1(initial_cost, "suboptimalCBS")
+                                writeResults(initial_cost, new_cost, "suboptimal", replanner)
+                                done=True
                 else: 
                     writeResultsForExperiment1(node['cost'], "suboptimalCBS")
                 return node['paths'], self.assigned_targets
