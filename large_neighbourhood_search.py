@@ -84,7 +84,7 @@ class Large_neighbourhood_search:
                 longest_path_index= agent
         # generate a random neighbourhood of size n, longest_path_index, may not be in here but if not we will remove one and add it
         if len(result[largest_makespan_team])>n:
-            neighbourhood = random.sample(range(0,len(result[largest_makespan_team])-1), n)
+            neighbourhood = random.sample(range(0,len(result[largest_makespan_team])), n)
         else:
             neighbourhood=[]
             for x in range(len(result[largest_makespan_team])):
