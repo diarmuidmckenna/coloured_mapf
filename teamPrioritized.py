@@ -412,7 +412,7 @@ class TeamPrioritizedPlanningSolver(object):
                     LNS = Large_neighbourhood_search(self.my_map)
                     while done==False:
                         result, new_target_assignment = LNS.team_heuristic(result,target_assignment, replanner)
-                        if float(time.perf_counter()-start<float(300)):
+                        if float(time.perf_counter()-start<float(600)):
                             new_cost = self.get_team_cost(result)
                             target_assignment=new_target_assignment
                         else:
