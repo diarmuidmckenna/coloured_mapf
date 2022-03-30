@@ -1,5 +1,0 @@
-* cost: 37
-* cost: 30
-* cost: 39
-* cost: 39
-test_5.tx cost: 33

@@ -1,2 +1,11 @@
 
 * cost: 9
+* cost: 9
+* cost: 9
+* cost: 8
+* cost: 8
+* cost: 11
+* cost: 11
+* cost: 10
+test_5.tx cost: 7
+test_5.tx cost: 7

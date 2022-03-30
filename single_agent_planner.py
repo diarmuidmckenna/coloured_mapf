@@ -65,7 +65,7 @@ def build_constraint_table(agent, constraints):
     # issue needs to be resolved for 
     constraint_table = []
     goal_locs = {}
-    for i in range(0,4000):
+    for i in range(0,500):
         timeStepConstraints = []
         for con in constraints:
             if con['timestep']==i and con['agent']==agent:
@@ -176,18 +176,21 @@ def a_star(my_map, start_loc, goal_loc, h_values, agent, constraints):
                continue
             if my_map[child_loc[0]][child_loc[1]]:
                 continue
-            if is_constrained(curr['loc'], child_loc, curr['time']+1, constraint_table)==False:
-                child = {'loc': child_loc,
-                        'g_val': curr['g_val'] + 1,
-                        'h_val': h_values[child_loc],
-                        'time': curr['time']+1,
-                        'parent': curr}
-                if (child['loc'],child['time']) in closed_list:
-                    existing_node = closed_list[((child['loc']), child['time'])]
-                    if compare_nodes(child, existing_node):
-                        closed_list[((child['loc']), child['time'])] = child
+            try:
+                if is_constrained(curr['loc'], child_loc, curr['time']+1, constraint_table)==False:
+                    child = {'loc': child_loc,
+                            'g_val': curr['g_val'] + 1,
+                            'h_val': h_values[child_loc],
+                            'time': curr['time']+1,
+                            'parent': curr}
+                    if (child['loc'],child['time']) in closed_list:
+                        existing_node = closed_list[((child['loc']), child['time'])]
+                        if compare_nodes(child, existing_node):
+                            closed_list[((child['loc']), child['time'])] = child
+                            push_node(open_list, child)
+                    else:
+                        closed_list[((child['loc']),  child['time'])] = child
                         push_node(open_list, child)
-                else:
-                    closed_list[((child['loc']),  child['time'])] = child
-                    push_node(open_list, child)
+            except:
+                return None
     return None  # Failed to find solutions

@@ -99,11 +99,17 @@ class Large_neighbourhood_search:
                 constraints = self.generate_constraints(result[team],assigned_targets[team], largest_makespan_team, constraints)
         # replan the paths for that team
         if replanner=="prioritized":
-            solver = PrioritizedPlanningSolver(self.my_map, new_starts, new_goals)
-            paths = solver.find_solution(extra_constraints=constraints)
+            try:
+                solver = PrioritizedPlanningSolver(self.my_map, new_starts, new_goals)
+                paths = solver.find_solution(extra_constraints=constraints)
+            except:
+                return result, assigned_targets
         else:
-            solver = CBSSolver(self.my_map, new_starts, new_goals)
-            paths = solver.find_solution(extra_constraints=constraints)
+            try:
+                solver = CBSSolver(self.my_map, new_starts, new_goals)
+                paths = solver.find_solution(extra_constraints=constraints)
+            except:
+                return result, assigned_targets
         # if the new makespan of the team is large
         new_makespan = get_makespan(paths)
         if new_makespan<=largest_makespan:

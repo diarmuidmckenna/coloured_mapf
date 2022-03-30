@@ -1,5 +1,0 @@
-* initial: 17; new: 17
-* initial: 15; new: 15
-* initial: 22; new: 17
-* initial: 20; new: 20
-* initial: 15; new: 15

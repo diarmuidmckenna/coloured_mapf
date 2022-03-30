@@ -1,0 +1,2 @@
+test_1.tx cost: 28
+test_1.tx cost: 28

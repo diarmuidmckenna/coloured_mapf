@@ -1,5 +1,0 @@
-* initial: 36; new: 35
-* initial: 43; new: 36
-* initial: 42; new: 40
-* initial: 42; new: 35
-* initial: 37; new: 29

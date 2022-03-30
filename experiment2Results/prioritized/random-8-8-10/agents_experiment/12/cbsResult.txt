@@ -1,0 +1,2 @@
+test_1.tx initial: 9; new: 8
+test_5.tx initial: 10; new: 8

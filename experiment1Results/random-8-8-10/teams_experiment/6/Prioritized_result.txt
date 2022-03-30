@@ -1,0 +1,4 @@
+test_2.tx cost: 15
+test_2.tx cost: 15
+test_4.tx cost: 11
+test_4.tx cost: 11
