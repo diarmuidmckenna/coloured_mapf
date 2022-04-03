@@ -1,0 +1,4 @@
+test_2.tx initial: 18; new: 18
+test_3.tx initial: 21; new: 21
+test_4.tx initial: 18; new: 18
+test_5.tx initial: 17; new: 17

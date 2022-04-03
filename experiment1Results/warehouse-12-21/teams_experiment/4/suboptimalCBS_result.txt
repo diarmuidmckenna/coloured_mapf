@@ -1,0 +1,6 @@
+test_1.tx cost: NO SOLUTION
+test_2.tx cost: 17
+test_3.tx cost: NO SOLUTION
+test_4.tx cost: 17
+test_4.tx cost: 17
+test_5.tx cost: NO SOLUTION

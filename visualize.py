@@ -101,11 +101,10 @@ class Animation:
                                                  blit=True)
 
     def save(self, file_name, speed):
+        writervideo=animation.PillowWriter(fps=10)
         self.animation.save(
             file_name,
-            fps=10 * speed,
-            dpi=200,
-            savefig_kwargs={"pad_inches": 0, "bbox_inches": "tight"})
+            writer=writervideo)
 
     @staticmethod
     def show():

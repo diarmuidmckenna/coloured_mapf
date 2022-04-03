@@ -1,7 +1,7 @@
 import time as timer
 import heapq
 import random
-from single_agent_planner import compute_heuristics, a_star, get_location, get_sum_of_cost
+from single_agent_planner import compute_heuristics, a_star, get_location, get_makespan
 
 
 def detect_collision(path1, path2):
@@ -162,14 +162,15 @@ class CBSSolver(object):
             if path is None:
                 raise BaseException('No solutions')
             root['paths'].append(path)
-        root['cost'] = get_sum_of_cost(root['paths'])
+        root['cost'] = get_makespan(root['paths'])
         root['collisions'] = detect_collisions(root['paths'])
         self.push_node(root)
-        while len(self.open_list)>0:
+        start = timer.perf_counter()
+        while len(self.open_list)>0 and timer.perf_counter-start<60:
             node = self.pop_node()
             node['collisions'] = detect_collisions(node['paths'])
             if len(node['collisions']) == 0:
-                node['cost'] = get_sum_of_cost(node['paths'])
+                node['cost'] = get_makespan(node['paths'])
                 #print(node['cost'])
                 return node['paths']
             collision = node['collisions'][0]
@@ -185,15 +186,16 @@ class CBSSolver(object):
                 if len(path)!=0:
                     child_node['paths'][agent] = path
                     child_node['collisions'] = detect_collisions(child_node['paths'])
-                    child_node['cost'] = get_sum_of_cost(child_node['paths'])
-                    self.push_node(child_node)                      
+                    child_node['cost'] = get_makespan(child_node['paths'])
+                    self.push_node(child_node)  
+        raise BaseException("No solutions")                    
 
 
     def print_results(self, node):
         print("\n Found a solution! \n")
         CPU_time = timer.time() - self.start_time
         print("CPU time (s):    {:.2f}".format(CPU_time))
-        print("Sum of costs:    {}".format(get_sum_of_cost(node['paths'])))
+        print("Sum of costs:    {}".format(get_makespan(node['paths'])))
         print("Expanded nodes:  {}".format(self.num_of_expanded))
         print("Generated nodes: {}".format(self.num_of_generated))
 

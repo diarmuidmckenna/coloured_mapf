@@ -1,2 +1,0 @@
-test_1.tx initial: 17; new: 17
-test_2.tx initial: 14; new: 13

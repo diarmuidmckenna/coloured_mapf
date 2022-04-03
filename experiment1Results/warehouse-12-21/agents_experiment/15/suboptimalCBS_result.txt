@@ -1,2 +1,8 @@
-* cost: NO SOLUTION
-* cost: NO SOLUTION
+test_2.tx cost: 18
+test_2.tx cost: 18
+test_3.tx cost: 21
+test_3.tx cost: 21
+test_4.tx cost: 18
+test_4.tx cost: 18
+test_5.tx cost: 17
+test_5.tx cost: 17

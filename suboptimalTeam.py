@@ -201,7 +201,7 @@ class suboptimalTeam:
         root['cost'] += self.get_cost(root['paths'])
         root['collisions'] = self.detect_collisions(root['paths'])
         self.push_node(root)
-        while len(self.open_list)>0 and time.perf_counter()-start_time<900:
+        while len(self.open_list)>0 and time.perf_counter()-start_time<180:
             node = self.pop_node()
             node['collisions'] = self.detect_collisions(node['paths'])
             if len(node['collisions']) == 0:
@@ -214,11 +214,12 @@ class suboptimalTeam:
                     initial_result, initial_target_assignment = node['paths'], self.assigned_targets
                     for replanner in ["prioritized", "cbs"]:
                         start = time.perf_counter()
+                        n=0
                         result, assigned_targets =  initial_result, initial_target_assignment 
                         done=False
                         while done==False:
-                            result, assigned_targets = LNS.team_heuristic(result, assigned_targets, replanner)
-                            if float(time.perf_counter()-start<float(180)):
+                            result, assigned_targets, n = LNS.team_heuristic(result, assigned_targets, replanner, n)
+                            if float(time.perf_counter()-start<float(120)):
                                 new_cost = self.get_cost(result)
                                 self.assigned_targets=assigned_targets
                             else:
