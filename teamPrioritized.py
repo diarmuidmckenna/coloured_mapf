@@ -411,14 +411,16 @@ class TeamPrioritizedPlanningSolver(object):
                     done = False
                     start = time.perf_counter()
                     LNS = Large_neighbourhood_search(self.my_map)
+                    iterations = 0
                     while done==False:
+                        iterations+= 1
                         result, new_target_assignment, n = LNS.team_heuristic(result,target_assignment, replanner, n)
-                        if float(time.perf_counter()-start<float(120)):
+                        if float(time.perf_counter()-start<float(60)):
                             new_cost = self.get_team_cost(result)
                             target_assignment=new_target_assignment
                         else:
                             writeResultsForExperiment1(initial_cost, "Prioritized")
-                            writeResults(initial_cost, new_cost, "prioritized", replanner)
+                            writeResults(initial_cost, new_cost, "prioritized", replanner, iterations)
                             done=True
             else: 
                 initial = get_makespan(result)

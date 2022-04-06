@@ -1,5 +1,0 @@
-test_1.tx cost: 15
-test_1.tx cost: 15
-test_4.tx cost: 16
-test_4.tx cost: 16
-test_5.tx cost: 16

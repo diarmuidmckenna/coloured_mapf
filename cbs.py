@@ -166,7 +166,7 @@ class CBSSolver(object):
         root['collisions'] = detect_collisions(root['paths'])
         self.push_node(root)
         start = timer.perf_counter()
-        while len(self.open_list)>0 and timer.perf_counter-start<60:
+        while len(self.open_list)>0 and timer.perf_counter()-start<60:
             node = self.pop_node()
             node['collisions'] = detect_collisions(node['paths'])
             if len(node['collisions']) == 0:

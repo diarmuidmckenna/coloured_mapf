@@ -1,0 +1,3 @@
+test_1.tx cost: 21
+test_2.tx cost: 12
+test_3.tx cost: 15

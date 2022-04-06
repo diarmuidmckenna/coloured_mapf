@@ -1,10 +1,5 @@
-* initial: 9; new: 9
-* initial: 8; new: 8
-* initial: 11; new: 10
-* initial: 10; new: 9
-test_5.tx initial: 7; new: 7
-test_1.tx initial: 9; new: 9
-test_2.tx initial: 8; new: 8
-test_3.tx initial: 11; new: 10
-test_4.tx initial: 10; new: 9
-test_5.tx initial: 7; new: 7
+test_1.tx initial: 9; new: 9; iterations: 15
+test_2.tx initial: 8; new: 8; iterations: 15
+test_3.tx initial: 11; new: 10; iterations: 16
+test_4.tx initial: 10; new: 9; iterations: 5
+test_5.tx initial: 7; new: 7; iterations: 17

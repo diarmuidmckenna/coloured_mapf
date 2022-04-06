@@ -1,0 +1,5 @@
+test_1.tx initial: 20; new: 16; iterations: 24
+test_2.tx initial: 22; new: 21; iterations: 40
+test_3.tx initial: 14; new: 14; iterations: 38
+test_4.tx initial: 22; new: 15; iterations: 20
+test_5.tx initial: 20; new: 19; iterations: 15

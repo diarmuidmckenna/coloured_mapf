@@ -112,7 +112,7 @@ class Large_neighbourhood_search:
                 starts.append(assigned_targets[largest_makespan_team][agent][0])
                 goals.append(assigned_targets[largest_makespan_team][agent][1])
             random.shuffle(starts)
-            #random.shuffle(goals)
+            random.shuffle(goals)
             new_starts, new_goals = greedy_target_assignment(starts, goals)
             # for every other team, for every agent in that team, generate constraints so that neighbourhood team treats other teams as moving obsacles
             # shuffle target assignments

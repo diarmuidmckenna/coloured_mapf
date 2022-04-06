@@ -1,4 +1,4 @@
-test_1.tx initial: 9; new: 9
-test_2.tx initial: 9; new: 9
-test_3.tx initial: 12; new: 12
-test_5.tx initial: 9; new: 9
+test_1.tx initial: 9; new: 9; iterations: 9
+test_2.tx initial: 9; new: 9; iterations: 9
+test_3.tx initial: 12; new: 12; iterations: 5
+test_5.tx initial: 9; new: 9; iterations: 5

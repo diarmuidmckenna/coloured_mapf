@@ -10,3 +10,9 @@ test_4.tx cost: 7
 test_4.tx cost: 7
 test_5.tx cost: 10
 test_5.tx cost: 10
+test_2.tx cost: 7
+test_2.tx cost: 7
+test_4.tx cost: 7
+test_4.tx cost: 7
+test_5.tx cost: 10
+test_5.tx cost: 10

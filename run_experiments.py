@@ -6,6 +6,7 @@ from teamPrioritized import TeamPrioritizedPlanningSolver
 from single_agent_planner import get_makespan
 from suboptimalTeam import suboptimalTeam
 from visualize import Animation
+from makespan_estimator import MakespanEstimator
 #from single_agent_planner import get_sum_of_cost
 
 SOLVER = "CBS"
@@ -124,6 +125,8 @@ if __name__ == '__main__':
         elif args.solver=="Prioritized":
             solver = TeamPrioritizedPlanningSolver(my_map, starts, goals, team=True)
             paths, assigned_targets = solver.find_solution(LNS="team")
+        elif args.solver=="makespan":
+            solver = MakespanEstimator(my_map, starts, goals)
         #print(paths)
 
 

@@ -1,3 +1,15 @@
+test_1.tx cost: 12
+test_1.tx cost: 12
+test_2.tx cost: 9
+test_2.tx cost: 9
+test_3.tx cost: 9
+test_3.tx cost: 9
+test_4.tx cost: 11
+test_4.tx cost: 11
+test_5.tx cost: 11
+test_5.tx cost: 11
+test_1.tx cost: 12
+test_1.tx cost: 12
 test_2.tx cost: 9
 test_2.tx cost: 9
 test_3.tx cost: 9

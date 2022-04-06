@@ -213,18 +213,20 @@ class suboptimalTeam:
                     LNS = Large_neighbourhood_search(self.my_map)
                     initial_result, initial_target_assignment = node['paths'], self.assigned_targets
                     for replanner in ["prioritized", "cbs"]:
+                        iterations = 0
                         start = time.perf_counter()
                         n=0
                         result, assigned_targets =  initial_result, initial_target_assignment 
                         done=False
                         while done==False:
+                            iterations +=1 
                             result, assigned_targets, n = LNS.team_heuristic(result, assigned_targets, replanner, n)
-                            if float(time.perf_counter()-start<float(120)):
+                            if float(time.perf_counter()-start<float(60)):
                                 new_cost = self.get_cost(result)
                                 self.assigned_targets=assigned_targets
                             else:
                                 writeResultsForExperiment1(initial_cost, "suboptimalCBS")
-                                writeResults(initial_cost, new_cost, "suboptimal", replanner)
+                                writeResults(initial_cost, new_cost, "suboptimal", replanner, iterations)
                                 done=True
                 else: 
                     writeResultsForExperiment1(node['cost'], "suboptimalCBS")
